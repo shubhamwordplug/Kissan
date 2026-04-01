@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Daily Expenses - Kisan-Vyapar</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.4/css/dataTables.bootstrap5.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="wrapper">
+    <!-- Sidebar -->
+    <nav id="sidebar">
+        <div class="sidebar-header">
+            <i class="fas fa-leaf text-primary"></i>
+            <strong class="brand-text ms-2">Kisan-Vyapar</strong>
+        </div>
+        <ul class="list-unstyled components">
+            <li><a href="index.html"><i class="fas fa-home"></i> Dashboard</a></li>
+            <li>
+                <a href="#purchaseSubmenu" data-bs-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
+                    <i class="fas fa-tractor"></i> Purchase (Inward)
+                </a>
+                <ul class="collapse list-unstyled" id="purchaseSubmenu">
+                    <li><a href="purchase-entry.html" class="ps-5">Purchase Entry</a></li>
+                    <li><a href="purchase-list.html" class="ps-5">Purchase History</a></li>
+                </ul>
+            </li>
+            <li>
+                <a href="#salesSubmenu" data-bs-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
+                    <i class="fas fa-shopping-cart"></i> Sales (Outward)
+                </a>
+                <ul class="collapse list-unstyled" id="salesSubmenu">
+                    <li><a href="sales-entry.html" class="ps-5">Sales Entry</a></li>
+                    <li><a href="invoice.html" class="ps-5">Generate Invoice</a></li>
+                </ul>
+            </li>
+            <li><a href="inventory.html"><i class="fas fa-boxes"></i> Inventory</a></li>
+            <li class="active">
+                <a href="#accountsSubmenu" data-bs-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
+                    <i class="fas fa-wallet"></i> Accounts
+                </a>
+                <ul class="collapse list-unstyled show" id="accountsSubmenu">
+                    <li><a href="pending-payments.html" class="ps-5">Pending Dues</a></li>
+                    <li><a href="ledger.html" class="ps-5">Party Ledger</a></li>
+                    <li class="active"><a href="expenses.html" class="ps-5"><i class="fas fa-chevron-right me-2 text-primary" style="font-size:0.75rem;"></i> Daily Expenses</a></li>
+                </ul>
+            </li>
+            <li>
+                <a href="#masterSubmenu" data-bs-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
+                    <i class="fas fa-users"></i> Directory
+                </a>
+                <ul class="collapse list-unstyled" id="masterSubmenu">
+                    <li><a href="directory.html" class="ps-5">Contact Book</a></li>
+                </ul>
+            </li>
+            <li><a href="reports.html"><i class="fas fa-chart-line"></i> Reports</a></li>
+            <li><a href="settings.html"><i class="fas fa-cog"></i> Settings</a></li>
+            <li><a href="login.html"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
+        </ul>
+    </nav>
+
+    <!-- Page Content -->
+    <div id="content">
+        <!-- Top Navbar -->
+        <nav class="top-navbar">
+            <button type="button" id="sidebarCollapse" class="sidebar-toggler">
+                <i class="fas fa-bars"></i>
+            </button>
+            <div class="user-profile">
+                <button id="themeToggle" class="theme-toggle-btn me-3" title="Toggle Dark Mode">
+                    <i class="fas fa-moon"></i>
+                </button>
+                <div class="user-info text-end">
+                    <span class="user-name">Admin User</span>
+                    <span class="user-role">Super Admin</span>
+                </div>
+                <!-- Adding click logic dynamically handles role-swap through script -->
+                <img src="https://ui-avatars.com/api/?name=Admin+User&background=10b981&color=fff" alt="User">
+            </div>
+        </nav>
+
+        <!-- Main Content Area -->
+        <div class="container-fluid fade-in">
+            <div class="d-flex justify-content-between align-items-center mb-4">
+                <h2>Daily Mandi Expenses (Kharcha)</h2>
+                <button class="btn btn-primary shadow-sm" data-bs-toggle="modal" data-bs-target="#addExpenseModal"><i class="fas fa-plus me-2"></i> Record Expense</button>
+            </div>
+
+            <!-- Stats Row -->
+            <div class="row mb-4">
+                <div class="col-md-4">
+                    <div class="card card-hover h-100">
+                        <div class="card-body">
+                            <div class="d-flex justify-content-between align-items-center">
+                                <div>
+                                    <h6 class="text-muted text-uppercase mb-2">Today's Expenses</h6>
+                                    <h3 class="mb-0">₹ 4,500</h3>
+                                </div>
+                                <div class="bg-primary bg-opacity-10 p-3 rounded-circle text-primary">
+                                    <i class="fas fa-receipt fs-4"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card card-hover h-100">
+                        <div class="card-body">
+                            <div class="d-flex justify-content-between align-items-center">
+                                <div>
+                                    <h6 class="text-muted text-uppercase mb-2">Hamali / Labor (MTD)</h6>
+                                    <h3 class="mb-0">₹ 12,850</h3>
+                                </div>
+                                <div class="bg-warning bg-opacity-10 p-3 rounded-circle text-warning">
+                                    <i class="fas fa-people-carry fs-4"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card card-hover h-100">
+                        <div class="card-body">
+                            <div class="d-flex justify-content-between align-items-center">
+                                <div>
+                                    <h6 class="text-muted text-uppercase mb-2">Freight / Transport (MTD)</h6>
+                                    <h3 class="mb-0 text-danger">₹ 35,400</h3>
+                                </div>
+                                <div class="bg-danger bg-opacity-10 p-3 rounded-circle text-danger">
+                                    <i class="fas fa-truck fs-4"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table id="expensesTable" class="table table-hover align-middle">
+                            <thead>
+                                <tr>
+                                    <th>Date</th>
+                                    <th>Category</th>
+                                    <th>Description</th>
+                                    <th>Paid To</th>
+                                    <th>Amount (₹)</th>
+                                    <th class="text-center">Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>2026-03-31</td>
+                                    <td><span class="badge badge-warning">Hamali / Labor</span></td>
+                                    <td>Unloading 500 Sacks of Wheat</td>
+                                    <td>Raju Contractor</td>
+                                    <td class="fw-bold text-danger">- 1,500.00</td>
+                                    <td class="text-center">
+                                        <button class="btn btn-sm btn-outline-danger"><i class="fas fa-trash"></i></button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>2026-03-31</td>
+                                    <td><span class="badge badge-primary">Mandi Fee / Tax</span></td>
+                                    <td>Mandi Samiti Tax Invoice #42</td>
+                                    <td>Mandi Board</td>
+                                    <td class="fw-bold text-danger">- 2,200.00</td>
+                                    <td class="text-center">
+                                        <button class="btn btn-sm btn-outline-danger"><i class="fas fa-trash"></i></button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>2026-03-30</td>
+                                    <td><span class="badge badge-success">Tea / Refreshment</span></td>
+                                    <td>Staff Tea & Snacks</td>
+                                    <td>Petty Cash</td>
+                                    <td class="fw-bold text-danger">- 350.00</td>
+                                    <td class="text-center">
+                                        <button class="btn btn-sm btn-outline-danger"><i class="fas fa-trash"></i></button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>2026-03-30</td>
+                                    <td><span class="badge" style="background: rgba(139, 92, 246, 0.15); color: #8b5cf6; border: 1px solid rgba(139, 92, 246, 0.3);">Transport / Freight</span></td>
+                                    <td>Truck MP-09-AB-1234 Delivery</td>
+                                    <td>Verma Logistics</td>
+                                    <td class="fw-bold text-danger">- 8,500.00</td>
+                                    <td class="text-center">
+                                        <button class="btn btn-sm btn-outline-danger"><i class="fas fa-trash"></i></button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal for New Expense -->
+<div class="modal fade" id="addExpenseModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content" style="background-color: var(--bg-surface); color: var(--text-primary); border: 1px solid var(--border-color);">
+            <div class="modal-header border-bottom-0">
+                <h5 class="modal-title">Record Expense</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form id="expenseForm">
+                    <div class="mb-3">
+                        <label class="form-label">Date</label>
+                        <input type="date" class="form-control" value="2026-03-31">
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Category</label>
+                        <select class="form-select">
+                            <option>Hamali / Labor</option>
+                            <option>Transport / Freight</option>
+                            <option>Mandi Fee</option>
+                            <option>Stationery & Office</option>
+                            <option>Tea / Refreshments</option>
+                            <option>Miscellaneous</option>
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Description</label>
+                        <input type="text" class="form-control" placeholder="e.g. Unloading fee">
+                    </div>
+                    <div class="mb-4">
+                        <label class="form-label">Amount (₹)</label>
+                        <input type="number" class="form-control" placeholder="0.00">
+                    </div>
+                    <button type="button" class="btn btn-primary w-100" data-bs-dismiss="modal" onclick="Swal.fire({icon:'success', title:'Expense Recorded', timer: 2000, showConfirmButton: false})">Submit Expense</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Scripts -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.13.4/js/dataTables.bootstrap5.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script src="main.js"></script>
+<script>
+    $(document).ready(function() {
+        $('#expensesTable').DataTable({
+            "order": [[ 0, "desc" ]],
+            "pageLength": 10
+        });
+    });
+</script>
+</body>
+</html>

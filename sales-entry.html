@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sales Entry - Kisan-Vyapar</title>
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="wrapper">
+    <!-- Sidebar -->
+    <nav id="sidebar">
+        <div class="sidebar-header">
+            <i class="fas fa-leaf text-primary"></i>
+            <strong class="brand-text ms-2">Kisan-Vyapar</strong>
+        </div>
+        <ul class="list-unstyled components">
+            <li>
+                <a href="index.html"><i class="fas fa-home"></i> Dashboard</a>
+            </li>
+            <li>
+                <a href="#purchaseSubmenu" data-bs-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
+                    <i class="fas fa-tractor"></i> Purchase (Inward)
+                </a>
+                <ul class="collapse list-unstyled" id="purchaseSubmenu">
+                    <li><a href="purchase-entry.html" class="ps-5">Purchase Entry</a></li>
+                    <li><a href="purchase-list.html" class="ps-5">Purchase History</a></li>
+                </ul>
+            </li>
+            <li class="active">
+                <a href="#salesSubmenu" data-bs-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
+                    <i class="fas fa-shopping-cart"></i> Sales (Outward)
+                </a>
+                <ul class="collapse list-unstyled show" id="salesSubmenu">
+                    <li class="active"><a href="sales-entry.html" class="ps-5"><i class="fas fa-chevron-right me-2 text-primary" style="font-size:0.75rem;"></i> Sales Entry</a></li>
+                    <li><a href="invoice.html" class="ps-5">Generate Invoice</a></li>
+                </ul>
+            </li>
+            <li>
+                <a href="inventory.html"><i class="fas fa-boxes"></i> Inventory</a>
+            </li>
+            <li>
+                <a href="#accountsSubmenu" data-bs-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
+                    <i class="fas fa-wallet"></i> Accounts
+                </a>
+                <ul class="collapse list-unstyled" id="accountsSubmenu">
+                    <li><a href="pending-payments.html" class="ps-5">Pending Dues</a></li>
+                    <li><a href="ledger.html" class="ps-5">Party Ledger</a></li>
+                    <li><a href="expenses.html" class="ps-5">Daily Expenses</a></li>
+                </ul>
+            </li>
+            <li>
+                <a href="#masterSubmenu" data-bs-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
+                    <i class="fas fa-users"></i> Directory
+                </a>
+                <ul class="collapse list-unstyled" id="masterSubmenu">
+                    <li><a href="directory.html" class="ps-5">Contact Book</a></li>
+                </ul>
+            </li>
+            <li><a href="reports.html"><i class="fas fa-chart-line"></i> Reports</a></li>
+            <li>
+                <a href="settings.html"><i class="fas fa-cog"></i> Settings</a>
+            </li>
+            <li>
+                <a href="login.html"><i class="fas fa-sign-out-alt"></i> Logout</a>
+            </li>
+        </ul>
+    </nav>
+
+    <!-- Page Content -->
+    <div id="content">
+        <!-- Top Navbar -->
+        <nav class="top-navbar">
+            <button type="button" id="sidebarCollapse" class="sidebar-toggler">
+                <i class="fas fa-bars"></i>
+            </button>
+            <div class="user-profile">
+                <button id="themeToggle" class="theme-toggle-btn me-3" title="Toggle Dark Mode">
+                    <i class="fas fa-moon"></i>
+                </button>
+                <div class="user-info text-end">
+                    <span class="user-name">Admin User</span>
+                    <span class="user-role">Super Admin</span>
+                </div>
+                <img src="https://ui-avatars.com/api/?name=Admin+User&background=10b981&color=fff" alt="User">
+            </div>
+        </nav>
+
+        <!-- Main Content Area -->
+        <div class="container-fluid fade-in">
+            <div class="d-flex justify-content-between align-items-center mb-4">
+                <h2 class="mb-0">New Sales (Buyer Outward)</h2>
+                <button class="btn btn-outline-secondary"><i class="fas fa-list"></i> Sales Ledger</button>
+            </div>
+
+            <!-- Sales Form -->
+            <div class="card mb-4" style="max-width: 900px;">
+                <div class="card-header bg-white border-0 pt-4 pb-0">
+                    <h5 class="card-title">Billing Details</h5>
+                </div>
+                <div class="card-body">
+                    <form action="#" method="POST" id="salesForm">
+                        <div class="row g-3">
+                            <div class="col-md-6">
+                                <label for="buyerSelect" class="form-label form-label text-muted">Buyer / Party Name</label>
+                                <div class="input-group">
+                                    <span class="input-group-text"><i class="fas fa-building"></i></span>
+                                    <select class="form-select" id="buyerSelect" required>
+                                        <option value="" selected disabled>Select Buyer...</option>
+                                        <option value="1">Agri Foods Ltd.</option>
+                                        <option value="2">Global Mills Inc.</option>
+                                        <option value="3">Cash Sale (Counter)</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <label for="date" class="form-label text-muted">Sale Date</label>
+                                <div class="input-group">
+                                    <span class="input-group-text"><i class="fas fa-calendar-alt"></i></span>
+                                    <input type="date" class="form-control" id="date" value="2026-03-31" required>
+                                </div>
+                            </div>
+
+                            <div class="col-12 mt-4">
+                                <h6 class="border-bottom pb-2">Item Details <small class="text-muted float-end">Test Stock: Wheat: 5000 | Rice: 2500 | Soya: 1200</small></h6>
+                            </div>
+
+                            <div class="col-md-4">
+                                <label for="sales-product" class="form-label text-muted">Product</label>
+                                <select class="form-select" id="sales-product" required>
+                                    <option value="" selected disabled>Choose product...</option>
+                                    <option value="wheat">Wheat</option>
+                                    <option value="rice">Rice (Paddy)</option>
+                                    <option value="soyabean">Soyabean</option>
+                                    <option value="corn">Corn</option>
+                                </select>
+                            </div>
+                            <div class="col-md-4">
+                                <label for="sales-qty" class="form-label text-muted">Quantity (in KG)</label>
+                                <div class="input-group has-validation">
+                                    <input type="number" class="form-control" id="sales-qty" placeholder="0" min="1" step="0.1" required>
+                                    <span class="input-group-text border-start-0 bg-transparent text-muted">KG</span>
+                                </div>
+                                <!-- Real-time Stock Validation Message -->
+                                <div id="stock-validation-msg" class="form-text d-none fw-medium mt-1"></div>
+                            </div>
+                            <div class="col-md-4">
+                                <label for="calc-rate" class="form-label text-muted">Selling Rate (per KG)</label>
+                                <div class="input-group">
+                                    <span class="input-group-text">₹</span>
+                                    <input type="number" class="form-control" id="calc-rate" placeholder="0.00" min="0" step="0.01" required>
+                                </div>
+                            </div>
+
+                            <div class="col-12 mt-3 text-end">
+                                <div class="p-3 bg-light rounded d-inline-flex flex-column text-end shadow-sm border border-light" style="min-width: 250px;">
+                                    <div class="d-flex justify-content-between mb-2">
+                                        <span class="text-secondary">Subtotal:</span>
+                                        <span class="fw-bold">₹ <span id="subtotal">0.00</span></span>
+                                    </div>
+                                    <div class="d-flex justify-content-between mb-2 pb-2 border-bottom">
+                                        <span class="text-secondary">GST (5%):</span>
+                                        <span class="fw-bold">₹ <span id="tax">0.00</span></span>
+                                    </div>
+                                    <div class="d-flex justify-content-between align-items-center mt-2">
+                                        <span class="text-secondary fw-bold">Grand Total:</span>
+                                        <span class="fs-4 text-primary fw-bolder">₹ <span id="grand-total">0.00</span></span>
+                                    </div>
+                                    <!-- Hidden inputs for form submission -->
+                                    <input type="hidden" id="calc-total" value="0"> 
+                                </div>
+                            </div>
+
+                            <div class="col-12 mt-4 border-top pt-4 d-flex justify-content-between">
+                                <button type="reset" class="btn btn-outline-secondary">Reset Form</button>
+                                <div>
+                                    <button class="btn btn-outline-primary me-2"><i class="fas fa-save me-1"></i> Save Draft</button>
+                                    <a href="invoice.html" class="btn btn-primary"><i class="fas fa-file-invoice me-1"></i> Generate Invoice</a>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<!-- Scripts -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script src="main.js"></script>
+<script>
+    // Specific calculation for Sales with GST
+    document.addEventListener("DOMContentLoaded", function () {
+        const qtyInput = document.getElementById('sales-qty');
+        const rateInput = document.getElementById('calc-rate');
+        const subtotalSpan = document.getElementById('subtotal');
+        const taxSpan = document.getElementById('tax');
+        const grandTotalSpan = document.getElementById('grand-total');
+
+        function calcSales() {
+            if(qtyInput && rateInput) {
+                const qty = parseFloat(qtyInput.value) || 0;
+                const rate = parseFloat(rateInput.value) || 0;
+                const subtotal = qty * rate;
+                const tax = subtotal * 0.05; // 5% GST
+                const grand = subtotal + tax;
+
+                subtotalSpan.textContent = subtotal.toFixed(2);
+                taxSpan.textContent = tax.toFixed(2);
+                grandTotalSpan.textContent = grand.toFixed(2);
+            }
+        }
+
+        if(qtyInput) qtyInput.addEventListener('input', calcSales);
+        if(rateInput) rateInput.addEventListener('input', calcSales);
+    });
+</script>
+<div id="toastWrapper" class="toast-container"></div>
+</body>
+</html>

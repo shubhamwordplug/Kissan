@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pending Dues - Kisan-Vyapar</title>
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="wrapper">
+    <!-- Sidebar -->
+    <nav id="sidebar">
+        <div class="sidebar-header">
+            <i class="fas fa-leaf text-primary"></i>
+            <strong class="brand-text ms-2">Kisan-Vyapar</strong>
+        </div>
+        <ul class="list-unstyled components">
+            <li><a href="index.html"><i class="fas fa-home"></i> Dashboard</a></li>
+            <li>
+                <a href="#purchaseSubmenu" data-bs-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
+                    <i class="fas fa-tractor"></i> Purchase (Inward)
+                </a>
+                <ul class="collapse list-unstyled" id="purchaseSubmenu">
+                    <li><a href="purchase-entry.html" class="ps-5">Purchase Entry</a></li>
+                    <li><a href="purchase-list.html" class="ps-5">Purchase History</a></li>
+                </ul>
+            </li>
+            <li>
+                <a href="#salesSubmenu" data-bs-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
+                    <i class="fas fa-shopping-cart"></i> Sales (Outward)
+                </a>
+                <ul class="collapse list-unstyled" id="salesSubmenu">
+                    <li><a href="sales-entry.html" class="ps-5">Sales Entry</a></li>
+                    <li><a href="invoice.html" class="ps-5">Generate Invoice</a></li>
+                </ul>
+            </li>
+            <li><a href="inventory.html"><i class="fas fa-boxes"></i> Inventory</a></li>
+            <li class="active">
+                <a href="#accountsSubmenu" data-bs-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
+                    <i class="fas fa-wallet"></i> Accounts
+                </a>
+                <ul class="collapse list-unstyled show" id="accountsSubmenu">
+                    <li class="active"><a href="pending-payments.html" class="ps-5"><i class="fas fa-chevron-right me-2 text-primary" style="font-size:0.75rem;"></i> Pending Dues</a></li>
+                    <li><a href="ledger.html" class="ps-5">Party Ledger</a></li>
+                    <li><a href="expenses.html" class="ps-5">Daily Expenses</a></li>
+                </ul>
+            </li>
+            <li>
+                <a href="#masterSubmenu" data-bs-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
+                    <i class="fas fa-users"></i> Directory
+                </a>
+                <ul class="collapse list-unstyled" id="masterSubmenu">
+                    <li><a href="directory.html" class="ps-5">Contact Book</a></li>
+                </ul>
+            </li>
+            <li><a href="reports.html"><i class="fas fa-chart-line"></i> Reports</a></li>
+            <li><a href="settings.html"><i class="fas fa-cog"></i> Settings</a></li>
+            <li><a href="login.html"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
+        </ul>
+    </nav>
+
+    <!-- Page Content -->
+    <div id="content">
+        <!-- Top Navbar -->
+        <nav class="top-navbar">
+            <button type="button" id="sidebarCollapse" class="sidebar-toggler">
+                <i class="fas fa-bars"></i>
+            </button>
+            <div class="user-profile">
+                <button id="themeToggle" class="theme-toggle-btn me-3" title="Toggle Dark Mode">
+                    <i class="fas fa-moon"></i>
+                </button>
+                <div class="user-info text-end">
+                    <span class="user-name">Admin User</span>
+                    <span class="user-role">Super Admin</span>
+                </div>
+                <img src="https://ui-avatars.com/api/?name=Admin+User&background=10b981&color=fff" alt="User">
+            </div>
+        </nav>
+
+        <!-- Main Content Area -->
+        <div class="container-fluid fade-in">
+            <div class="d-flex justify-content-between align-items-center mb-4">
+                <h2 class="mb-0">Pending Payments Tracker</h2>
+            </div>
+
+            <!-- Summary Cards -->
+            <div class="row mb-4">
+                <div class="col-md-6">
+                    <div class="card bg-danger text-white">
+                        <div class="card-body py-4 d-flex justify-content-between align-items-center">
+                            <div>
+                                <h6 class="text-white-50 mb-1 text-uppercase">Total Payables (You Owe)</h6>
+                                <h2 class="mb-0 fw-bold">₹ 1,05,000</h2>
+                            </div>
+                            <div class="opacity-50">
+                                <i class="fas fa-arrow-up fa-3x"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="card bg-success text-white">
+                        <div class="card-body py-4 d-flex justify-content-between align-items-center">
+                            <div>
+                                <h6 class="text-white-50 mb-1 text-uppercase">Total Receivables (You Will Get)</h6>
+                                <h2 class="mb-0 fw-bold">₹ 2,50,000</h2>
+                            </div>
+                            <div class="opacity-50">
+                                <i class="fas fa-arrow-down fa-3x"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <!-- Payables (Farmers) -->
+                <div class="col-xl-6 mb-4">
+                    <div class="card h-100 border-top border-danger border-3">
+                        <div class="card-header bg-white border-bottom pt-4 pb-3">
+                            <h5 class="card-title text-danger mb-0"><i class="fas fa-hand-holding-usd me-2"></i> Payables (To Farmers)</h5>
+                        </div>
+                        <div class="card-body p-0">
+                            <ul class="list-group list-group-flush">
+                                <li class="list-group-item p-3">
+                                    <div class="d-flex justify-content-between align-items-center mb-2">
+                                        <h6 class="fw-bold mb-0">Kisan Lal</h6>
+                                        <span class="text-danger fw-bold fs-5">₹ 85,000</span>
+                                    </div>
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <small class="text-muted"><i class="fas fa-file-invoice me-1"></i> Inv: #PUR-003 • 28 Mar 2026</small>
+                                        <button class="btn btn-sm btn-outline-success">Mark Paid</button>
+                                    </div>
+                                </li>
+                                <li class="list-group-item p-3">
+                                    <div class="d-flex justify-content-between align-items-center mb-2">
+                                        <h6 class="fw-bold mb-0">Suresh Singh</h6>
+                                        <span class="text-danger fw-bold fs-5">₹ 20,000</span>
+                                    </div>
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <small class="text-muted"><i class="fas fa-file-invoice me-1"></i> Inv: #PUR-002 • 30 Mar 2026 (Partial)</small>
+                                        <button class="btn btn-sm btn-outline-success">Mark Paid</button>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Receivables (Buyers) -->
+                <div class="col-xl-6 mb-4">
+                    <div class="card h-100 border-top border-success border-3">
+                        <div class="card-header bg-white border-bottom pt-4 pb-3">
+                            <h5 class="card-title text-success mb-0"><i class="fas fa-money-bill-wave me-2"></i> Receivables (From Buyers)</h5>
+                        </div>
+                        <div class="card-body p-0">
+                            <ul class="list-group list-group-flush">
+                                <li class="list-group-item p-3">
+                                    <div class="d-flex justify-content-between align-items-center mb-2">
+                                        <h6 class="fw-bold mb-0">Agri Foods Ltd.</h6>
+                                        <span class="text-success fw-bold fs-5">₹ 2,10,105</span>
+                                    </div>
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <small class="text-muted"><i class="fas fa-file-invoice me-1"></i> Inv: INV-2026-0042 • Due: 15 Apr 2026</small>
+                                        <div>
+                                            <button class="btn btn-sm btn-outline-primary me-1" title="Send Reminder"><i class="fas fa-bell"></i></button>
+                                            <button class="btn btn-sm btn-success text-white">Receive</button>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li class="list-group-item p-3">
+                                    <div class="d-flex justify-content-between align-items-center mb-2">
+                                        <h6 class="fw-bold mb-0">Global Mills Inc.</h6>
+                                        <span class="text-success fw-bold fs-5">₹ 39,895</span>
+                                    </div>
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <small class="text-muted"><i class="fas fa-file-invoice me-1"></i> Inv: INV-2026-0038 • Due: 02 Apr 2026</small>
+                                        <div>
+                                            <button class="btn btn-sm btn-outline-primary me-1" title="Send Reminder"><i class="fas fa-bell"></i></button>
+                                            <button class="btn btn-sm btn-success text-white">Receive</button>
+                                        </div>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<!-- Scripts -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script src="main.js"></script>
+<div id="toastWrapper" class="toast-container"></div>
+</body>
+</html>
